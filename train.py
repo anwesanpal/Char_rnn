@@ -6,6 +6,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import argparse
 import os
+import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 
@@ -94,11 +95,17 @@ try:
     for epoch in tqdm(range(1, args.n_epochs + 1)):
         loss = train(*random_training_set(args.chunk_len, args.batch_size))
         loss_avg += loss
+	all_losses.append(loss)
 
         if epoch % args.print_every == 0:
             print('[%s (%d %d%%) %.4f]' % (time_since(start), epoch, epoch / args.n_epochs * 100, loss))
             print(generate(decoder, 'Wh', 100, cuda=args.cuda), '\n')
 
+    plt.plot(range(1,epoch),all_losses)
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.title('Training loss as a function of epochs')
+    plt.show()
     print("Saving...")
     save()
 
