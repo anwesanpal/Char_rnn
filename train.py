@@ -106,6 +106,7 @@ try:
     plt.ylabel('Loss')
     plt.title('Training loss as a function of epochs')
     plt.show()
+    plt.savefig('Plot.png')
     print("Saving...")
     save()
 
