@@ -101,7 +101,7 @@ try:
             print('[%s (%d %d%%) %.4f]' % (time_since(start), epoch, epoch / args.n_epochs * 100, loss))
             print(generate(decoder, 'Wh', 100, cuda=args.cuda), '\n')
 
-    plt.plot(range(1,epoch),all_losses)
+    plt.plot(range(1,epoch+1),all_losses)
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.title('Training loss as a function of epochs')
