@@ -95,7 +95,7 @@ try:
     for epoch in tqdm(range(1, args.n_epochs + 1)):
         loss = train(*random_training_set(args.chunk_len, args.batch_size))
         loss_avg += loss
-	all_losses.append(loss)
+        all_losses.append(loss)
 
         if epoch % args.print_every == 0:
             print('[%s (%d %d%%) %.4f]' % (time_since(start), epoch, epoch / args.n_epochs * 100, loss))
@@ -107,6 +107,7 @@ try:
     plt.title('Training loss as a function of epochs')
     plt.show()
     plt.savefig('Plot.png')
+    print(all_losses)
     print("Saving...")
     save()
 
